@@ -1,19 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather Api</title>
+  <script src=
+ "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+   </script>
 </head>
 <body>
-    
-  hello
+  <script>
+    var url = "https://api.weatherbit.io/v2.0/forecast/daily?city=london,gb,&key=a89a7d649c8e476f8af212be6467abc3";
 
-  <script src="main.js" type="module"></script> 
-  
+    function getWeather(){
+    $.getJSON( url, function( data ) {
+      var items = [];
+
+      items.push("<li>"+data.city_name+"</li>");
+      items.push("<li>"+data.lon+"</li>");
+      items.push("<li>"+data.timezone+"</li>");
+      items.push("<li>"+data.lat+"</li>");
+      items.push("<li>"+data.state_code+"</li>");
+
+
+      $( "<ul>", {
+        "class": "my-new-list",
+        html: items.join( "" )
+      }).appendTo( "body" );
+    });
+    }
+
+    getWeather();
+  </script>
 </body>
-
-<style></style>
-
 </html>
